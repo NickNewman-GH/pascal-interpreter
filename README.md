@@ -1,9 +1,9 @@
 # pascal-interpreter
 ## Данная программа является очень упрощённым интерпретатором языка Pascal.
-На вход подаётся код в формате:
-***begin
-<assignment|complex statement|empty>
-end.***
+На вход подаётся код в формате:<br>
+***begin<br>
+<assignment|complex statement|empty><br>
+end.***<br>
 Выходом является словарь (Python dict) со всеми переменными. Key - переменная, value - её значение.
 
 Пример работы программы(main.py):
