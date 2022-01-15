@@ -38,20 +38,20 @@ class Empty(Node):
 class Variable(Node):
 
     def __init__(self, variable: Token):
-        self.name = variable.value
+        self.token = variable
 
     def __str__(self):
-        return f"Variable<{self.name}>"
+        return f"Variable<{self.token.value}>"
 
 class Assignment(Node):
 
-    def __init__(self, variable: Node, op: Token, expr: Node):
-        self.variable = variable
-        self.op = op
-        self.expr = expr
+    def __init__(self, left: Node, op: Token, right: Node):
+        self.left = left  # <variable>
+        self.op = op  # <operator>
+        self.right = right  # <expr>
 
     def __str__(self):
-        return f"Assignment<{self.variable}>{self.op}({self.expr})"
+        return f"Assignment<{self.left}>{self.op}({self.right})"
 
 class StatementList(Node):
 

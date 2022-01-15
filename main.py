@@ -6,18 +6,17 @@ import interpreter
 
 if __name__ == "__main__":
     parser = Parser()
-    print(parser.parse("""
-BEGIN
-    y := 2;
+    interpreter = Interpreter()
+
+    print(interpreter(parser(
+    """
     BEGIN
-        a := 3;
-        a := a;
-        b := 10 + a + 10 * y / 4;
-        c := a - b
-    END;
-    x := 11;
-END.
-    """))
+        y := 2;
+        BEGIN
+        END;
+        x := 11;
+    END.
+    """)))
 
 #     lexer = Lexer()
 #     lexer.init(

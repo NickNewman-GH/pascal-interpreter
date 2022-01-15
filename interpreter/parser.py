@@ -15,7 +15,7 @@ class Parser():
         if self._current_token.type_ == type_:
             self._current_token = self._lexer.next()
         else:
-            raise ParserException("Invalid token order")
+            raise ParserException(f"Invalid token order. Found {self._current_token.type_}, expected {type_}")
 
     def _factor(self) -> Node:
         token = self._current_token
