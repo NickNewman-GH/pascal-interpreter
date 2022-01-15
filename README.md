@@ -3,7 +3,7 @@
 
 На вход подаётся код в формате:<br>
 ***begin<br>
-<assignment|complex statement|empty><br>
+<assignment(s)|complex statement(s)|empty><br>
 end.***<br>
 Выходом является словарь (Python **dict**) со всеми переменными. **Key** - переменная, **value** - её значение.
 
