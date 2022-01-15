@@ -5,42 +5,21 @@ from interpreter import TokenType
 import interpreter
 
 if __name__ == "__main__":
+    lexer = Lexer()
     parser = Parser()
+
     interpreter = Interpreter()
 
-    print(interpreter(parser(
+    result = interpreter(parser(
     """
     BEGIN
-        y := 2;
+        x := 25;
         BEGIN
+            f := 34;
+            f := f - 30
         END;
-        x := 11;
+        y:= x + 3 ^ f;
     END.
-    """)))
+    """))
 
-#     lexer = Lexer()
-#     lexer.init(
-#     """
-# BEGIN
-#     y := 2;
-#     BEGIN
-#         a := 3;
-#         a := a;
-#         b := 10 + a + 10 * y / 4;
-#         c := a - b
-#     END;
-#     x := 11;
-# END.
-#     """)
-#     token = lexer.next()
-#     while token.type_ != TokenType.EOS:
-#         print(token)
-#         token = lexer.next()
-    # parcer = Parser()
-    # interpreter = Interpreter()
-    # tree = parcer.parse("--2 * (2 + 3)")
-    # print(interpreter.interpret(tree))
-    # tree = parcer.parse("+2 * 3 ^ -3")
-    # print(interpreter.interpret(tree))
-    # tree = parcer.parse("5-( 2 * 3)")
-    # print(interpreter.interpret(tree))
+print(result)
