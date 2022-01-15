@@ -4,7 +4,7 @@
 На вход подаётся код в формате:<br>
 ***begin<br>
 <assignment(s)|complex statement(s)|empty><br>
-end.***<br>
+end.***<br><br>
 Выходом является словарь (Python **dict**) со всеми переменными. **Key** - переменная, **value** - её значение.
 
 ### Пример работы программы(main.py):
