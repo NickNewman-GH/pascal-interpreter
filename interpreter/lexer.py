@@ -99,12 +99,15 @@ class Lexer():
     def _number(self):
         result: list = []
         left = None
+        wasPoint = False
         while self._current_char and (self._current_char.isdigit() or self._current_char == '.'):
-            if left:
-                if self._current_char == '.' and not left.isdigit():
+            if left and self._current_char == '.' and not left.isdigit():
+                raise LexerException("Wrong number")
+            if self._current_char == '.':
+                if wasPoint:
                     raise LexerException("Wrong number")
-                elif not self._current_char.isdigit() and left == '.':
-                    raise LexerException("Wrong number")
+                else:
+                    wasPoint = True
             result.append(self._current_char)
             left = self._current_char
             self._forward()

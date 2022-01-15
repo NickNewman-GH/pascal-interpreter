@@ -1,10 +1,8 @@
-from os import PathLike
-from types import resolve_bases
-from .tokens import TokenType, Token
-from .lexer import Lexer
-from typing import Union
-from .node import Empty, Node, Number, BinOp, UnaryOp, Assignment, Variable, StatementList
 import operator
+from typing import Union
+from .node import (Assignment, BinOp, Empty, Node, Number, StatementList,
+                   UnaryOp, Variable)
+from .tokens import TokenType
 
 
 class InterpreterException(Exception):
@@ -45,7 +43,7 @@ class Interpreter():
         except ValueError:
             return float(node.token.value)
 
-    def _visit_unop(self, node: UnaryOp) -> float:
+    def _visit_unop(self, node: UnaryOp) -> Union[int, float]:
         op = node.op
         if op.type_ == TokenType.MINUS:
             return -self._visit(node.right)
@@ -53,7 +51,7 @@ class Interpreter():
             return self._visit(node.right)
         raise InterpreterException("invalid unary operator")
 
-    def _visit_binop(self, node: BinOp) -> float:
+    def _visit_binop(self, node: BinOp) -> Union[int, float]:
         op = node.op
         binop = {TokenType.PLUS: operator.add,
                  TokenType.MINUS: operator.sub,
@@ -70,9 +68,9 @@ class Interpreter():
     def _visit_assignment(self, node: Assignment) -> None:
         self._variables[node.left.token.value] = self._visit(node.right)
 
-    def _visit_variable(self, node: Variable) -> float:
+    def _visit_variable(self, node: Variable) -> Union[int, float]:
         if node.token.value not in self._variables:
-            raise InterpreterException(f"Name {node.token.value} is not defined")
+            raise InterpreterException(f"Name '{node.token.value}' is not defined")
         return self._variables[node.token.value]
 
     def _visit_statement_list(self, node: StatementList) -> None:

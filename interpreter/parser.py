@@ -1,6 +1,8 @@
-from .tokens import TokenType, Token
 from .lexer import Lexer
-from .node import Empty, Node, Number, BinOp, UnaryOp, Assignment, Variable, StatementList
+from .node import (Assignment, BinOp, Empty, Node, Number, StatementList,
+                   UnaryOp, Variable)
+from .tokens import Token, TokenType
+
 
 class ParserException(Exception):
     pass

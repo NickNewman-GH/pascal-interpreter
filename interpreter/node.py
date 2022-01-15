@@ -21,7 +21,7 @@ class BinOp(Node):
         self.right = right
 
     def __str__(self):
-        return f"BinOp<{self.op.value}>({self.left}, {self.right})"
+        return f"BinOp({self.left}, {self.op}, {self.right})"
 
 class UnaryOp(Node):
 
@@ -30,7 +30,7 @@ class UnaryOp(Node):
         self.right = right
 
     def __str__(self):
-        return f"UnaryOp<{self.op.value}>({self.right})"
+        return f"UnaryOp({self.op}, {self.right})"
 
 class Empty(Node):
     ...
@@ -41,7 +41,7 @@ class Variable(Node):
         self.token = variable
 
     def __str__(self):
-        return f"Variable<{self.token.value}>"
+        return f"Variable({self.token.value})"
 
 class Assignment(Node):
 
@@ -51,7 +51,7 @@ class Assignment(Node):
         self.right = right  # <expr>
 
     def __str__(self):
-        return f"Assignment<{self.left}>{self.op}({self.right})"
+        return f"Assignment({self.left}, {self.op}, {self.right})"
 
 class StatementList(Node):
 
