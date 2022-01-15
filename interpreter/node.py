@@ -45,12 +45,13 @@ class Variable(Node):
 
 class Assignment(Node):
 
-    def __init__(self, variable: Node, right: Node):
+    def __init__(self, variable: Node, op: Token, expr: Node):
         self.variable = variable
-        self.right = right
+        self.op = op
+        self.expr = expr
 
     def __str__(self):
-        return f"Assignment<{self.variable.name}>:=({self.right})"
+        return f"Assignment<{self.variable}>{self.op}({self.expr})"
 
 class StatementList(Node):
 
@@ -58,4 +59,4 @@ class StatementList(Node):
         self.statements = []
 
     def __str__(self):
-        return f"StatementList{self.statements}"
+        return f"StatementList{[str(elem) for elem in self.statements]}"

@@ -79,9 +79,10 @@ class Parser():
 
     def _assignment(self) -> Node:
         variable = self._variable()
+        op = self._current_token
         self._check_token_type(TokenType.ASSIGN)
         expr = self._expr()
-        return Assignment(variable, expr)
+        return Assignment(variable, op, expr)
 
     def _statement(self) -> Node:
         if self._current_token.type_ == TokenType.BEGIN:
@@ -99,9 +100,7 @@ class Parser():
             if self._current_token.type_ != TokenType.END:
                 statement_list.statements.append(self._statement())
             else:
-                self._check_token_type(TokenType.END)
                 return statement_list
-        self._check_token_type(TokenType.END)
         return statement_list
 
     def _complex_statement(self) -> Node:
