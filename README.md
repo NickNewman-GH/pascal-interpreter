@@ -56,4 +56,4 @@ if __name__ == "__main__":
 ```
 
 ### Coverage:
-<img src="imgs/coverage.png" width="400" />
+<img src="imgs/coverage.png" width="600" />
